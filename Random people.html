@@ -1,0 +1,82 @@
+<!DOCTYPE THTML>
+<html>
+
+<head>
+<title> Random people</title>
+
+<style>
+
+.box{
+    border: 5px solid white;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 5px;
+  height: 120px;
+  width: 30%;
+  background-color: rgb(209, 209, 43);
+}
+main{
+  display: flex;
+  flex-wrap:wrap;
+}
+img{
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+</style>
+<script>
+  var url='https://randomuser.me/api/?results=15';
+fetch(url).then(data=>data.json())
+.then(result=>{
+// cosole.log(result.results[0].picture.thumbnail); 
+ result.results.forEach(result=>{
+   var div=document.createElement('div');
+   div.className='box';
+
+   var img= document.createElement('img');
+   img.src =result.picture.thumbnail;
+   var title= result.name.title;
+ var first=result.name.first;
+ var last=result.name.last;
+
+ div.appendChild(img);
+ div.insertAdjacentHTML('beforeend',
+ `<p> ${title} ${first} ${last} </P>`);
+ document.getElementsByTagName('main')[0].appendChild(div);
+   
+ })
+
+ 
+ 
+
+ //imgElement.appendChild(img);
+ //document.querySelector('.box').appendChild(img);
+ //document.querySelector('.box').insertAdjacentHTML('beforeend',
+ //`<p> ${title} ${first} ${last} </P>`);
+  //console.log(result[0].gender)
+  
+  })
+.catch((error)=>{
+  console.log('error:', error);
+});
+
+//var newApi=http://api.positionstack.com/v1/forward?access_key=2574162948cef2c4220ed4551112fe4d&query=magodo
+
+</script>
+</head>
+<body>
+
+
+    <h1> Random People Generator</h1>
+<main>
+
+</main>
+
+
+</body>
+
+
+
+</html>
